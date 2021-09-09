@@ -4,12 +4,10 @@
 from operator import itemgetter
 import sys
 import json
-current_word = None
-current_count = 0
-word = None
-import re
-p = re.compile('(?<!\\\\)\'')
+
+
 l=[]
+d={}
 # input comes from STDIN
 #print(type(sys.stdin))
 for line in sys.stdin:
@@ -17,12 +15,19 @@ for line in sys.stdin:
     # remove leading and trailing whitespace
     line = line.strip()
     #print(line)
-    l.append(int(line))
-l.sort()
-
-s=set(l)
-la=[]
-la=sorted(list(s))
-#print(la)
-for i in la:
-	print(i,l.count(i))
+    l=line.split(":")
+    if(l[0] in d):
+    	d[l[0]].append(l[1])
+    else:
+    	d[l[0]]=[l[1]]
+    #print(d)
+#print(d)
+for i,j in d.items():
+	s=set(j)
+	sl=sorted(list(s))
+	print(i)
+	sa=0
+	for k in sl:
+		print(k,j.count(k))
+		sa+=j.count(k)
+	print(i,sa)
