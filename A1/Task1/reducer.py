@@ -1,14 +1,8 @@
 #!/usr/bin/env python
 """reducer.py"""
 
-from operator import itemgetter
 import sys
-import json
-current_word = None
-current_count = 0
-word = None
-import re
-p = re.compile('(?<!\\\\)\'')
+
 l=[]
 # input comes from STDIN
 #print(type(sys.stdin))
