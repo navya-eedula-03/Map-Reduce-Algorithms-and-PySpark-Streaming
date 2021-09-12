@@ -26,4 +26,4 @@ state : city
 ### reducer.py
 
 The output of mapper.py is taken as input from STDIN using the sys module. The string is converted into a dictionary with 'state' as key and 'city' as value. The unique values of 'city' are found and sorted lexicographically. A counter, total_accidents, is incremented to find the total number of accidents that took place in the state to produce the required output.
-
+Edge case - Since space has lower ASCII value than the alphabetic characters, it was not resulting in the correct output. Hence, we appended '~' (has higher ASCII value than alphabet) to the end of each string, sorted the cities and removed it from the end before printing it to STDOUT.
