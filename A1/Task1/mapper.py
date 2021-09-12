@@ -24,9 +24,10 @@ for line in sys.stdin:
     		if any(x in y['Description'].lower() for x in matches):
 			#print(y['Severity'])
     			l.append(y['Start_Time'])
+			start_hr = int(y['Start_Time'][10:13])
     			#print(y['Start_Time'])
     			date_time_obj = datetime.strptime(y['Start_Time'], '%Y-%m-%d %H:%M:%S')
-    			print(date_time_obj.hour)
+    			print(start_hr)
     			
 #print(l)
 
