@@ -1,37 +1,33 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 """mapper.py"""
 from datetime import datetime
-	
+import math
 import sys
 import json
+import requests
 l=[]
+url = "http://20.185.44.219:5000/"
+headers = {
+  'Content-Type': 'application/json'
+}
 
-matches = ['lane blocked', 'shoulder blocked', 'overturned vehicle']
+la=sys.argv[1]
+lo=sys.argv[2]
+d=sys.argv[3]
+fixed=(float(la),float(lo))
+def dist(a,b):
+	t1=(b[0]-a[0])**2
+	t2=(b[1]-a[1])**2
+	return (t1+t2)**0.5
 # input comes from STDIN (standard input)
 for line in sys.stdin:
     # remove leading and trailing whitespace
     #print(line)
     
     line = line.strip()
-    #print(line)
-    #print(type(line))
     y=json.loads(line)
-    #print(type(y))
-    #print(y['ID'])
-    	
-    if (y['Severity']>=2 and y['Sunrise_Sunset']=='Night' and y['Visibility(mi)']<= 10 and y['Precipitation(in)']>= 0.2):
-    	if(y['Weather_Condition'] in ['Heavy Snow', 'Thunderstorm', 'Heavy Rain', 'Heavy Rain Showers','Blowing Dust']):
-    		if any(x in y['Description'].lower() for x in matches):
-			#print(y['Severity'])
-    			l.append(y['Start_Time'])
-    			#print(y['Start_Time'])
-    			start_hr = int(y['Start_Time'][10:13])
-    			#date_time_obj = datetime.strptime(y['Start_Time'], '%Y-%m-%d %H:%M:%S')
-
-    				
-    			print(start_hr)
-    			
-#print(l)
-
-
-
+    if(dist(fixed,(float(y['Start_Lat']),float(y['Start_Lng']))) < float(d)):
+    	payload = json.dumps({"latitude":y['Start_Lat'],"longitude":y['Start_Lng']})
+    	response = requests.request("POST", url, headers=headers, data=payload)
+    	data=response.json()
+    	print(data['state'],data['city'])
