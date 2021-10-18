@@ -23,13 +23,7 @@ for line in f1.readlines():
         #print(key,i,1/l)
         dp=sum([ (y[str(key)][k]*y[str(i)][k]) for k in range(0,5)])
         temp=dp/(modp(y[str(key)])*(modp(y[str(i)])))
-        print(1/l,temp)
+        #print(1/l,temp)
         print(key,i,temp*(1/l))
         #print(dp)        
-                
-'''
-for i in y:
-    for j in y:
-        dp=sum([ (y[i][k]*y[j][k]) for k in range(0,5)])
-        temp=dp/(modp(y[i])*(modp(y[j])))
-        #print(i,j,round(temp,4)) '''
+
