@@ -1,7 +1,11 @@
 #!/usr/bin/env python3
-Dict={}
+import os
 import sys
-f1=open('/home/pes1ug19cs433/Desktop/BIG_DATA/Big-Data-Sem-5/A2/Task1/v.txt','w+')
+
+Dict={}
+path = sys.argv[1]
+
+f1=open(path,'w+')
 
 for line in sys.stdin:
     line=line.strip()
