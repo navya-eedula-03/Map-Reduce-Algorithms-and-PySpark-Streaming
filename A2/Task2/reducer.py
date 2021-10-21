@@ -12,8 +12,6 @@ for line in sys.stdin:
     else:
         Dict2[key2]=0.85*value
 
-f1=open('V1.txt','w+')
-for key in Dict2:
+for key in sorted (Dict2.keys()):
     Dict2[key]+=0.15
     print("%d,%1.2f "%(key,Dict2[key]))
-    f1.write("%d,%1.2f\n"%(key,Dict2[key]))
