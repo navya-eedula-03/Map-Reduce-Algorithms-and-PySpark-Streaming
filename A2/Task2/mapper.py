@@ -9,8 +9,8 @@ def modp(li):
 import sys 
 import json
 l=[]
-emb_fi = sys.argv[1]
-v_fi = sys.argv[2]
+emb_fi = sys.argv[2]
+v_fi = sys.argv[1]
 f2=open(emb_fi,'r')
 f1=open(v_fi,'r')
 
